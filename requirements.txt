@@ -6,4 +6,4 @@ email-validator==2.1.0.post1
 Flask-Bcrypt==1.0.1
 python-dotenv==1.0.1
 gunicorn
-freeze
+
