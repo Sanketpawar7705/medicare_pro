@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container">
+  <h3 class="mb-3">Billing</h3>
+  <div class="table-responsive shadow-sm rounded-4 bg-white p-3">
+    <table class="table align-middle">
+      <thead><tr><th>Item</th><th>Amount (USD)</th><th>Status</th><th>Issued</th></tr></thead>
+      <tbody>
+        {% for i in invoices %}
+        <tr>
+          <td>{{ i.item }}</td>
+          <td>{{ i.amount }}</td>
+          <td><span class="badge {% if i.status=='Paid' %}bg-success{% else %}bg-warning text-dark{% endif %}">{{ i.status }}</span></td>
+          <td>{{ i.issued_on.strftime('%b %d, %Y') }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4" class="text-muted">No invoices yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

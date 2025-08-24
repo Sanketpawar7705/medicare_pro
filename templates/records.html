@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container">
+  <h3 class="mb-3">Medical Records</h3>
+  <div class="list-group shadow-sm rounded-4">
+    {% for r in records %}
+    <a class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h6 class="mb-1">{{ r.title }}</h6>
+        <small class="text-muted">{{ r.created_at.strftime('%b %d, %Y') }}</small>
+      </div>
+      <p class="mb-1 small text-muted">{{ r.notes }}</p>
+    </a>
+    {% else %}
+    <div class="p-4 bg-white rounded-4 shadow-sm text-muted">No records yet.</div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

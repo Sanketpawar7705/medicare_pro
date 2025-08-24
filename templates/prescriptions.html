@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container">
+  <h3 class="mb-3">Prescriptions</h3>
+  <div class="table-responsive shadow-sm rounded-4 bg-white p-3">
+    <table class="table align-middle">
+      <thead><tr><th>Doctor</th><th>Medication</th><th>Dosage</th><th>Instructions</th><th>Issued</th></tr></thead>
+      <tbody>
+        {% for p in items %}
+        <tr>
+          <td>{{ p.doctor_name }}</td>
+          <td>{{ p.medication }}</td>
+          <td>{{ p.dosage }}</td>
+          <td>{{ p.instructions }}</td>
+          <td>{{ p.issued_on.strftime('%b %d, %Y') }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5" class="text-muted">No prescriptions yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

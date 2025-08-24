@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="p-4 rounded-4 shadow-sm bg-white">
+        <h4 class="mb-3">Welcome back 👋</h4>
+        {% if next_appt %}
+        <div class="alert alert-info rounded-3">
+          <i class="fa-regular fa-calendar-check me-2"></i>
+          Next appointment with <strong>{{ next_appt.doctor_obj.name }}</strong> on
+          <strong>{{ next_appt.date.strftime('%b %d, %Y') }}</strong> at <strong>{{ next_appt.time.strftime('%H:%M') }}</strong>.
+        </div>
+        {% else %}
+        <div class="alert alert-warning rounded-3">No upcoming appointments. <a href="{{ url_for('appointments') }}">Book one now</a>.</div>
+        {% endif %}
+        <h5 class="mt-4">Top Doctors</h5>
+        <div class="row row-cols-1 row-cols-md-2 g-3">
+          {% for d in doctors %}
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm rounded-4">
+              <img src="{{ d.photo }}" alt="{{ d.name }}" class="card-img-top" style="height:180px;object-fit:cover;">
+              <div class="card-body">
+                <h6 class="card-title mb-1">{{ d.name }}</h6>
+                <small class="text-muted">{{ d.specialization }} • {{ d.hospital }}</small>
+                <div class="mt-2"><i class="fa-solid fa-star text-warning"></i> {{ '%.1f'|format(d.rating) }}</div>
+              </div>
+              <div class="card-footer bg-white border-0">
+                <a class="btn btn-sm btn-primary" href="{{ url_for('appointments') }}">Book</a>
+                <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('doctors') }}">View</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="p-4 rounded-4 shadow-sm bg-dark text-white">
+        <h5 class="mb-3">Your quick links</h5>
+        <a class="btn btn-light w-100 mb-2" href="{{ url_for('appointments') }}"><i class="fa-regular fa-calendar-plus me-2"></i>Book Appointment</a>
+        <a class="btn btn-outline-light w-100 mb-2" href="{{ url_for('records') }}"><i class="fa-solid fa-file-medical me-2"></i>Medical Records</a>
+        <a class="btn btn-outline-light w-100 mb-2" href="{{ url_for('billing') }}"><i class="fa-solid fa-file-invoice-dollar me-2"></i>Billing</a>
+        <a class="btn btn-outline-light w-100" href="{{ url_for('prescriptions') }}"><i class="fa-solid fa-prescription-bottle-medical me-2"></i>Prescriptions</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

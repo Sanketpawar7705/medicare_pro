@@ -1,0 +1,11 @@
+:root{
+  --primary:#2a9d8f;
+  --ink:#1f2d3d;
+  --soft:#f6f8fb;
+}
+body.bg-gradient{
+  background: linear-gradient(180deg,#eaf3ff 0%,#ffffff 30%,#f3f6ff 100%);
+}
+.navbar .nav-link{font-weight:500}
+.card{border-radius:1rem}
+.rounded-4{border-radius:1rem!important}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container">
+  <h3 class="mb-3">Services & Pricing</h3>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+    {% for s in services %}
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm rounded-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ s.name }}</h5>
+          <p class="card-text text-muted">{{ s.description }}</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <span class="badge bg-primary">USD {{ s.price }}</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

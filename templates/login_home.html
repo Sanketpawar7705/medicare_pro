@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container py-5" style="min-height:75vh;">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-6">
+      <h1 class="display-5 fw-bold">Healthcare meets <span class="text-primary">insurance</span>.</h1>
+      <p class="lead text-muted">From vitals to visits—book appointments, manage records, and keep bills tidy in one secure place.</p>
+      <ul class="list-unstyled">
+        <li class="mb-2"><i class="fa-regular fa-circle-check text-primary me-2"></i>Private & secure patient portal</li>
+        <li class="mb-2"><i class="fa-regular fa-circle-check text-primary me-2"></i>Top specialists with real reviews</li>
+        <li class="mb-2"><i class="fa-regular fa-circle-check text-primary me-2"></i>Transparent pricing and invoices</li>
+      </ul>
+    </div>
+    <div class="col-lg-5 ms-auto">
+      <div class="card border-0 shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="login-tab" data-bs-toggle="pill" data-bs-target="#login-pane" type="button" role="tab">Login</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="register-tab" data-bs-toggle="pill" data-bs-target="#register-pane" type="button" role="tab">Create Account</button>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="login-pane" role="tabpanel">
+              <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">{{ form.email.label(class="form-label") }} {{ form.email(class="form-control") }}</div>
+                <div class="mb-3">{{ form.password.label(class="form-label") }} {{ form.password(class="form-control") }}</div>
+                {{ form.submit(class="btn btn-primary w-100") }}
+              </form>
+            </div>
+            <div class="tab-pane fade" id="register-pane" role="tabpanel">
+              <form method="POST" action="{{ url_for('register') }}">
+                {{ reg.hidden_tag() }}
+                <div class="mb-3">{{ reg.full_name.label(class="form-label") }} {{ reg.full_name(class="form-control") }}</div>
+                <div class="mb-3">{{ reg.email.label(class="form-label") }} {{ reg.email(class="form-control") }}</div>
+                <div class="mb-3">{{ reg.password.label(class="form-label") }} {{ reg.password(class="form-control") }}</div>
+                <div class="mb-3">{{ reg.confirm.label(class="form-label") }} {{ reg.confirm(class="form-control") }}</div>
+                {{ reg.submit(class="btn btn-success w-100") }}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
